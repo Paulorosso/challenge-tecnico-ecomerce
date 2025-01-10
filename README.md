@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Challenge Técnico E-commerce
 
-## Getting Started
+## Objetivo
 
-First, run the development server:
+Este proyecto es parte de un desafío técnico. A través de este ejercicio, se ha desarrollado una web app utilizando **Next.js** con el objetivo de demostrar habilidades en desarrollo frontend.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tecnologías utilizadas
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Next.js**: Framework de React para desarrollo de aplicaciones web modernas, utilizado como base del proyecto.
+- **App Router**: Para la gestión de rutas de la aplicación.
+- **TailwindCSS**: Framework CSS de utilidad que facilita la creación de interfaces de usuario responsivas y de alta calidad.
+- **TypeScript**: Lenguaje que extiende JavaScript añadiendo tipado estático.
+- **React**: Biblioteca de JavaScript utilizada para construir la interfaz de usuario del proyecto.
+- **npm**: Gestor de paquetes utilizado para instalar las dependencias.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Listado de Productos (PLP)
 
-## Learn More
+- Se renderiza en la raíz del proyecto.
+- Permite realizar búsquedas por **SKU** o nombre del producto con un **debounce** de 500ms.
+- Muestra un **loader** mientras se procesa la búsqueda.
+- El resultado de búsqueda muestra:
+  - Imagen del producto
+  - Marca
+  - Nombre
+  - Precio
+- Cada producto tiene un botón **Ver detalle** que redirige a la página de detalle del producto (PDP).
 
-To learn more about Next.js, take a look at the following resources:
+### Detalle de Producto (PDP)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Se renderiza en la ruta `/products/:sku`.
+- Muestra un **loader** mientras se carga la información.
+- La interfaz incluye la siguiente información:
+  - Marca
+  - SKU
+  - Imagen
+  - Stock
+  - Precio
+  - Descripción
+  - Categoría
+- Se muestra el mensaje **"No encontrado"** si la API falla con un **404**.
+- Se muestra el mensaje **"No se pudo cargar"** si la API falla con un **404**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Agregados adicionales
 
-## Deploy on Vercel
+- **Componente Header**: Un componente común para todo el sitio.
+- **Componente para ordenar productos**: Permite ordenar los productos por nombre y precio.
+- **Formato de precios**: Los precios se formatean a la moneda de Perú.
+- **Breadcrumbs**: Componente para navegar entre las categorías y productos.
+- **Botón de agregar al carrito**: Limita la cantidad de unidades a la cantidad de stock disponible.
+- **Notificaciones**: Un componente que muestra información cuando un producto es agregado al carrito.
+- **Stock del producto**: Muestra la cantidad de unidades disponibles. Si hay solo una unidad, el texto cambia de "quedan" a "queda", y de "disponibles" a "disponible". Si no hay stock, se muestra un mensaje **"No Disponible"**.
+- **Tabla de especificaciones**: Incluye detalles adicionales del producto, junto con su categoría.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Despliegue
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Vercel**: La web app se encuentra desplegada en [Vercel](https://challenge-tecnico-ecomerce.vercel.app/).
+
+## Conclusión
+
+Este proyecto ha sido una excelente oportunidad para aplicar mis habilidades en el desarrollo frontend utilizando tecnologías modernas como **Next.js**, **TailwindCSS**, y **TypeScript**.
+
+## Contacto
+
+Para más información sobre mi perfil profesional y otros proyectos, no dudes en contactarme a través de LinkedIn o explorar mi GitHub.
+
+- **Frontend Developer**: [Tu Nombre]
+- **LinkedIn**: [Tu perfil de LinkedIn](https://www.linkedin.com/in/paulodariorosso)
