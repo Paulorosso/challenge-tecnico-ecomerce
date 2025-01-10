@@ -49,12 +49,26 @@ const HomePage = () => {
   }, [debouncedUpdateQuery]);
 
   useEffect(() => {
-    fetchProducts(debouncedQuery, page, sortOrder);
+    if (debouncedQuery === '') {
+      setPage(1);
+      fetchProducts('', 1, sortOrder);
+    } else {
+      fetchProducts(debouncedQuery, 1, sortOrder);
+    }
+  }, [debouncedQuery, sortOrder]);
+
+  useEffect(() => {
+    if (debouncedQuery !== '') {
+      fetchProducts(debouncedQuery, page, sortOrder);
+    } else {
+      fetchProducts('', page, sortOrder);
+    }
   }, [debouncedQuery, page, sortOrder]);
 
   const fetchProducts = async (search: string = '', newPage: number = 1, sort: string = '') => {
     if (newPage === 1) {
       setLoading(true);
+      setProducts([]);
     }
 
     setNotFound(false);
