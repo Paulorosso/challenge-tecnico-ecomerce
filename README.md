@@ -47,6 +47,7 @@ Este proyecto es parte de un desafío técnico. A través de este ejercicio, se 
 - **Componente Header**: Un componente común para todo el sitio.
 - **Componente para ordenar productos**: Permite ordenar los productos por nombre y precio.
 - **Formato de precios**: Los precios se formatean a la moneda de Perú.
+- **Creacion de scroll infinito PLP**: Se crea un scroll infinito en PLP donde inicialmente solo se muestran 8 productos.
 - **Breadcrumbs**: Componente para navegar entre las categorías y productos.
 - **Botón de agregar al carrito**: Limita la cantidad de unidades a la cantidad de stock disponible.
 - **Notificaciones**: Un componente que muestra información cuando un producto es agregado al carrito.
@@ -65,5 +66,5 @@ Este proyecto ha sido una excelente oportunidad para aplicar mis habilidades en 
 
 Para más información sobre mi perfil profesional y otros proyectos, no dudes en contactarme a través de LinkedIn o explorar mi GitHub.
 
-- **Frontend Developer**: [Tu Nombre]
-- **LinkedIn**: [Tu perfil de LinkedIn](https://www.linkedin.com/in/paulodariorosso)
+- **Frontend Developer**: Paulo Dario Rosso
+- **LinkedIn**: [https://www.linkedin.com/in/paulodariorosso](https://www.linkedin.com/in/paulodariorosso)
