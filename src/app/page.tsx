@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
 import debounce from 'lodash.debounce';
 import SearchBar from './components/SearchBar';
@@ -21,6 +21,7 @@ interface Product {
 
 const HomePage = () => {
   const [query, setQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [notFound, setNotFound] = useState(false);
@@ -29,9 +30,27 @@ const HomePage = () => {
   const [sortOrder, setSortOrder] = useState('');
   const pageSize = 8;
 
+  const debouncedUpdateQuery = useRef(
+    debounce((value: string) => {
+      setDebouncedQuery(value);
+    }, 500)
+  ).current;
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setQuery(value);
+    debouncedUpdateQuery(value);
+  };
+
   useEffect(() => {
-    fetchProducts(query, page, sortOrder);
-  }, [query, page, sortOrder]);  
+    return () => {
+      debouncedUpdateQuery.cancel();
+    };
+  }, [debouncedUpdateQuery]);
+
+  useEffect(() => {
+    fetchProducts(debouncedQuery, page, sortOrder);
+  }, [debouncedQuery, page, sortOrder]);
 
   const fetchProducts = async (search: string = '', newPage: number = 1, sort: string = '') => {
     if (newPage === 1) {
@@ -84,18 +103,6 @@ const HomePage = () => {
     }
   };
 
-  const debouncedSearch = debounce((value: string) => {
-    setPage(1);
-    setProducts([]);
-    fetchProducts(value, 1, sortOrder);
-  }, 500);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setQuery(value);
-    debouncedSearch(value);
-  };
-
   const handleScroll = useCallback(() => {
     if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
       if (!loading && hasMore) {
@@ -110,8 +117,7 @@ const HomePage = () => {
   }, [handleScroll]);
 
   const handleSortOrderChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newSortOrder = e.target.value;
-    setSortOrder(newSortOrder);
+    setSortOrder(e.target.value);
     setPage(1);
   };
 
